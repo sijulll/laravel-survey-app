@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateModelPertanyaansTable extends Migration
+class CreateModelPointsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class CreateModelPertanyaansTable extends Migration
      */
     public function up()
     {
-        Schema::create('model_pertanyaans', function (Blueprint $table) {
+        Schema::create('point', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('score_point');
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ class CreateModelPertanyaansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('model_pertanyaans');
+        Schema::dropIfExists('point');
     }
 }

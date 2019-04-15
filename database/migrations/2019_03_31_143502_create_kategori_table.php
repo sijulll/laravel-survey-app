@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateModelSurveisTable extends Migration
+class CreateModelKategorisTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class CreateModelSurveisTable extends Migration
      */
     public function up()
     {
-        Schema::create('model_surveis', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('kategori', function (Blueprint $table) {
+            $table->Increments('id');
+            $table->string('nama_kategori');
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ class CreateModelSurveisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('model_surveis');
+        Schema::dropIfExists('kategori');
     }
 }

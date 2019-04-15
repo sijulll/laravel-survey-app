@@ -13,8 +13,9 @@ class CreateModelResponsesTable extends Migration
      */
     public function up()
     {
-        Schema::create('model_responses', function (Blueprint $table) {
+        Schema::create('response', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->increment()
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ class CreateModelResponsesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('model_responses');
+        Schema::dropIfExists('response');
     }
 }

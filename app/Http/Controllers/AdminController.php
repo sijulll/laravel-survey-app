@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use app\ModelAdmin;
 class AdminController extends Controller
 {
     /**
@@ -14,6 +14,9 @@ class AdminController extends Controller
     public function index()
     {
         //
+        $data = ModelAdmin::all();
+        return view('',compact('data')) ;
+
     }
 
     /**
@@ -23,7 +26,8 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
+        //langsung return ke view aja
+
     }
 
     /**
@@ -35,6 +39,8 @@ class AdminController extends Controller
     public function store(Request $request)
     {
         //
+        $data = new ModelAdmin();
+        $data -> username 
     }
 
     /**
@@ -56,7 +62,10 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        //
+        
+        $data = ModelAdmin::where('id',$id)-> get();
+        return view('',compact('data'));
+  
     }
 
     /**
