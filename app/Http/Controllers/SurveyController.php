@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use illuminate\Support\Facades\DB;
+use App\ModelSurvei;
 
 class SurveyController extends Controller
 {
@@ -13,7 +15,8 @@ class SurveyController extends Controller
      */
     public function index()
     {
-        //
+        $data = ModelSurvei::all();
+        return view('',compact('data'));
     }
 
     /**
@@ -23,7 +26,9 @@ class SurveyController extends Controller
      */
     public function create()
     {
-        //
+        //return to view front end;
+        return view('');
+
     }
 
     /**
@@ -34,7 +39,15 @@ class SurveyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = new ModelSurvei();
+        $data->id_kategori = $request->id_kategori;
+        $data->judul_survei = $reqiest->judul_survei;
+        $data->deskripsi_survei = $request->deskripsi_survei;
+        $data->pict_survei = $request->pict_survei;
+        $data->id_user = $request->id_user;
+        $data->id_point = $request->id_point;
+        $data->save();
+        return redirect()->route('')->with('alert-succes','Berhasil menambahkan Data');
     }
 
     /**
@@ -57,6 +70,8 @@ class SurveyController extends Controller
     public function edit($id)
     {
         //
+        $data = ModelSurvei::where('id',$id)->get();
+        return view('',compact('data'));
     }
 
     /**
@@ -69,6 +84,15 @@ class SurveyController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $data =ModelSurei::where('id',$id)->first();
+        $data->id_kategori = $request->id_kategori;
+        $data->judul_survei = $reqiest->judul_survei;
+        $data->deskripsi_survei = $request->deskripsi_survei;
+        $data->pict_survei = $request->pict_survei;
+        $data->id_user = $request->id_user;
+        $data->id_point = $request->id_point;
+        $data->save();
+        return redirect()->route('')->with('alert-success','Data berhasil di ubah');
     }
 
     /**
@@ -80,5 +104,8 @@ class SurveyController extends Controller
     public function destroy($id)
     {
         //
+        $data = ModelSurvei::where('id',$id)->first();
+        $data->delete();
+        return redirect()->route('')->with('alert-success','Data berhasil di hapus');
     }
 }

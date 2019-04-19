@@ -40,7 +40,10 @@ class AdminController extends Controller
     {
         //
         $data = new ModelAdmin();
-        $data -> username 
+        $data->username = $request->username;
+        $data->password = $request->password;
+        $data->save();
+        return redirect()->route('')->with('alert-success','Data berhasil di tambahkan');
     }
 
     /**
@@ -78,6 +81,12 @@ class AdminController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $data = ModelAdmin::where('id',$id)->first();
+        $data->username = $request->username;
+        $data->password = $request->password;
+        $data->save();
+        return redirect()->route('')->with('alert-success','Data berhasil diubah !');
+
     }
 
     /**
@@ -89,5 +98,8 @@ class AdminController extends Controller
     public function destroy($id)
     {
         //
+        $data = ModelAdmin::where('id',$id)->first();
+        $data->delete();
+        return redirect()->route('')->with('alert-success','Data Berhasil di hapus');
     }
 }
