@@ -98,4 +98,8 @@ class PointController extends Controller
         $data->delete();
         return redirect()->route('')->with('alert-success','data berhasil di hapus');
     }
+    public function SistemPoint($id)
+    {
+        //Algoritma to add point here 
+    }
 }
