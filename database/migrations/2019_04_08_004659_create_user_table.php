@@ -16,8 +16,7 @@ class CreateModelUsersTable extends Migration
         Schema::create('user', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->foreign('id_kategori')->references('id')->on('kategori');
-            // Untuk ID Poin gw masih bingung maksudnya gimana
-            // $table->foreign('id_kategori')->references('id')->on('kategori');
+            $table->foreign('id_point')->references('id')->on('point');
             $table->string('nama');
             $table->datetime('tanggal_lahir');
             $table->integer('usia');
@@ -25,8 +24,6 @@ class CreateModelUsersTable extends Migration
             $table->string('username');
             $table->string('password');
             $table->string('email');
-            // gw juga masih kurang paham fungsi role ini apa
-            // $table->string('role');
             $table->timestamps();
         });
     }

@@ -15,8 +15,14 @@ class CreateModelResponsesTable extends Migration
     {
         Schema::create('response', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->increment();
-            $table->timestamps();
+            $table->foreign('id_user')->references('id')->on('user');
+            $table->foreign('id_kategori')->references('id')->on('kategori');
+            $table->foreign('id_pertanyaan')->references('id')->on('pertanyaan');
+            $table->foreign('id_survei')->references('id')->on('survei');
+            $table->foreign('id_tipepertanyaan')->references('id')->on('tipepertanyaan');
+            $table->foreign('id_pilihan')->references('id')->on('pilihan_jawaban');
+            $table->foreign('id_point')->references('id')->on('point');
+            $table->timestamps('respondate');
         });
     }
 

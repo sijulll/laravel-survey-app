@@ -15,9 +15,7 @@ class CreateModelTipePertanyaansTable extends Migration
     {
         Schema::create('tipe_pertanyaan', function (Blueprint $table) {
             $table->bigIncrements('id');
-          // masih bingung fungsi dari nama tipe ini apa 
-            //  $table->string('nama_tipe');
-
+            $table->string('tipe_pertanyaan');
             $table->timestamps();
         });
     }

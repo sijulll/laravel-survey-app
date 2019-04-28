@@ -15,6 +15,10 @@ class CreateModelPertanyaansTable extends Migration
     {
         Schema::create('pertanyaan', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->foreign('id_survei')->references('id')->on('survei');
+            $table->foreign('id_kategori')->references('id')->on('kategori');
+            $table->foreign('id_tipepertanyaan')->references('id')->on('tipepertanyaan');
+            $table->string('pertanyaan');
             $table->timestamps();
         });
     }
