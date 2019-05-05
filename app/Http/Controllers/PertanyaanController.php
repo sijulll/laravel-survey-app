@@ -81,4 +81,8 @@ class PertanyaanController extends Controller
     {
         //
     }
+    public function Addpertanyaan()
+    {
+        
+    }
 }

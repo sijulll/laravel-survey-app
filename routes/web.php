@@ -14,3 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('index', function () {
+    return view('index');
+});
+
+Route::post('/RegisterPost','UserController@RegisterPost');
+Route::post('/LoginPost','UserController@LoginPost');
+Route::get('/Logout','UserController@Logout');
+Route::get('/surevey_list','UserController@index');
