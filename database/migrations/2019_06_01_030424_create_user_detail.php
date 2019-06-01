@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateModelResponsesTable extends Migration
+class CreateUserDetail extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,15 @@ class CreateModelResponsesTable extends Migration
      */
     public function up()
     {
-        Schema::create('response', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('user_detail', function (Blueprint $table) {
             $table->foreign('id_user')->references('id')->on('user');
             $table->foreign('id_kategori')->references('id')->on('kategori');
-            $table->foreign('id_pertanyaan')->references('id')->on('pertanyaan');
-            $table->foreign('id_survei')->references('id')->on('survei');
-            $table->foreign('id_tipepertanyaan')->references('id')->on('tipepertanyaan');
-            $table->foreign('id_pilihan')->references('id')->on('pilihan_jawaban');
             $table->foreign('id_point')->references('id')->on('point');
-            $table->timestamps('respondate');
+            $table->string('nama');
+            $table->datetime('tanggal_lahir');
+            $table->integer('usia');
+            $table->string('jenis_kelamin');
+            $table->timestamps('email_verified_at')->nullable();
         });
     }
 
@@ -33,6 +32,6 @@ class CreateModelResponsesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('response');
+        Schema::dropIfExists('user_detail');
     }
 }

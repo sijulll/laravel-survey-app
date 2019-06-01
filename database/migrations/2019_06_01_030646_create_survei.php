@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateModelSurveisTable extends Migration
+class CreateSurvei extends Migration
 {
     /**
      * Run the migrations.
@@ -15,7 +15,7 @@ class CreateModelSurveisTable extends Migration
     {
         Schema::create('survei', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreign('id_kategori')->references('id')->on('kategori');
+            $table->integer('id_kategori')->references('id')->on('kategori');
             $table->string('judul_survei');
             $table->string('deskripsi_survei');
             $table->string('pict_survei');

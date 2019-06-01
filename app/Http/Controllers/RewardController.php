@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use app/ModelReward;
+// use App/ModelReward;
 
 class RewardController extends Controller
 {
@@ -16,7 +16,7 @@ class RewardController extends Controller
     {
         //view All data Survei
         $data = ModelReward::all();
-        return view('ModelReward', compact('data'))
+        return view('ModelReward', compact('data'));
     }
 
     /**
@@ -98,7 +98,7 @@ class RewardController extends Controller
     {
         //
         $data =ModelReward::where('id',$id)->first();
-        $data = delete()
+        $data = delete();
         return redirect()->route('')->with('alert-succes','Data Berhasil dihapus');
     }
 }

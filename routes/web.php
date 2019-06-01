@@ -14,11 +14,17 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('index', function () {
-    return view('index');
+Route::get('/index', function () {
+    return view('Surevey.index');
 });
-
+Route::get('/Logout','UserController@Logout');
+Route::get('/SureveyList', function(){
+    return view('Surevey.SureveyList');
+});
 Route::post('/RegisterPost','UserController@RegisterPost');
 Route::post('/LoginPost','UserController@LoginPost');
-Route::get('/Logout','UserController@Logout');
-Route::get('/surevey_list','UserController@index');
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

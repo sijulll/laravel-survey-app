@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateModelPertanyaansTable extends Migration
+class CreatePertanyaan extends Migration
 {
     /**
      * Run the migrations.
@@ -18,7 +18,7 @@ class CreateModelPertanyaansTable extends Migration
             $table->foreign('id_survei')->references('id')->on('survei');
             $table->foreign('id_kategori')->references('id')->on('kategori');
             $table->foreign('id_tipepertanyaan')->references('id')->on('tipepertanyaan');
-            $table->string('pertanyaan');
+            $table->text('pertanyaan');
             $table->timestamps();
         });
     }

@@ -15,14 +15,15 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function LoginSes()
     {
-        if(!Session::get('login'))
+        if(!Session::get('Login'))
         {
             return redirect('index')->with('alert','Silahkan login terlebih dahulu');
         }
-        else{
-            return view('surevey_list');
+        else
+        {
+            return view('SureveyList');
         }
         return view('index');
     }
@@ -34,15 +35,17 @@ class UserController extends Controller
         $password = $request->password;
 
         $data = user::where('email',$email)->first();
+        
         if($data) //check email ada atau tidak
         {
             if(Hash::check($password,$data->password))
             {
                 Session::put('full_name',$data->full_name);
                 Session::put('email',$data->email);
-                Session::put('login',TRUE);
-     
-                return redirect('surevey_list');
+                Session::put('Login',TRUE);
+                
+                
+                return redirect('SureveyList');
             }
             else
             {
@@ -63,7 +66,7 @@ class UserController extends Controller
         $data = new user();
         $data->full_name = $request->full_name;
         $data->email = $request->email;
-        $data->password = $request->password;
+        $data->password = bcrypt($request->password);
         $data->save();
         return redirect('index')->with('alert-success','Berhasil Register silahkan login.'); 
     
@@ -71,7 +74,7 @@ class UserController extends Controller
 
     public function Logout()
     {
-        Session::Flush();
+        Session::flush();
         return redirect('index');
     }
 

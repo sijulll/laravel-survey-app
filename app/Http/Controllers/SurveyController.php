@@ -43,11 +43,11 @@ class SurveyController extends Controller
         $data->id_kategori = $request->id_kategori;
         $data->judul_survei = $reqiest->judul_survei;
         $data->deskripsi_survei = $request->deskripsi_survei;
-        $data->pict_survei = $request->pict_survei;
-        $data->id_user = $request->id_user;
-        $data->id_point = $request->id_point;
-        $data->save();
-        return redirect()->route('')->with('alert-succes','Berhasil menambahkan Data');
+        // $data->pict_survei = $request->pict_survei;
+        // $data->id_user = $request->id_user;
+        // $data->id_point = $request->id_point;
+         $data->save();
+        return redirect()->route('index')->with('alert-succes','Berhasil menambahkan Data');
     }
 
     /**
@@ -88,9 +88,9 @@ class SurveyController extends Controller
         $data->id_kategori = $request->id_kategori;
         $data->judul_survei = $reqiest->judul_survei;
         $data->deskripsi_survei = $request->deskripsi_survei;
-        $data->pict_survei = $request->pict_survei;
-        $data->id_user = $request->id_user;
-        $data->id_point = $request->id_point;
+        // $data->pict_survei = $request->pict_survei;
+        // // $data->id_user = $request->id_user;
+        // $data->id_point = $request->id_point;
         $data->save();
         return redirect()->route('')->with('alert-success','Data berhasil di ubah');
     }

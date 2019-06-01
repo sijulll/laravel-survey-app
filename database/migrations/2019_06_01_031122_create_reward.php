@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRewardTable extends Migration
+class CreateReward extends Migration
 {
     /**
      * Run the migrations.
@@ -19,8 +19,8 @@ class CreateRewardTable extends Migration
             $table->string('description');
             $table->timestamps();
             $table->foregin('id_admin')->references('id')->on('admin');
-            
-        });
+
+	});
     }
 
     /**
