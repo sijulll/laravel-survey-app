@@ -14,14 +14,20 @@ class CreateUserDetail extends Migration
     public function up()
     {
         Schema::create('user_detail', function (Blueprint $table) {
-            $table->foreign('id_user')->references('id')->on('user');
-            $table->foreign('id_kategori')->references('id')->on('kategori');
-            $table->foreign('id_point')->references('id')->on('point');
+            //$table->bigIncrements('id');
+            $table->bigInteger('id_user')->unsigned();
+            $table->integer('id_kategori')->unsigned();
+            $table->bigInteger('id_point')->unsigned();
             $table->string('nama');
             $table->datetime('tanggal_lahir');
             $table->integer('usia');
             $table->string('jenis_kelamin');
-            $table->timestamps('email_verified_at')->nullable();
+            $table->timestamps();
+
+            $table->primary('id_user')->references('id')->on('user');
+            $table->foreign('id_kategori')->references('id')->on('kategori');
+            $table->foreign('id_point')->references('id')->on('point');
+            
         });
     }
 

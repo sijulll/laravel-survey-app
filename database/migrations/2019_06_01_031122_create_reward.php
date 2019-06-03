@@ -14,11 +14,13 @@ class CreateReward extends Migration
     public function up()
     {
         Schema::create('reward', function (Blueprint $table) {
-            $table->Increments('id_reward');
+            $table->Increments('id');
             $table->string('reward');
             $table->string('description');
+            $table->integer('id_admin')->unsigned();
+            $table->foreign('id_admin')->references('id')->on('admin');
             $table->timestamps();
-            $table->foregin('id_admin')->references('id')->on('admin');
+           
 
 	});
     }

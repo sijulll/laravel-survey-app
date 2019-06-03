@@ -15,10 +15,14 @@ class CreatePilihanJawaban extends Migration
     {
         Schema::create('pilihan_jawaban', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->increment('no_pertanyaan');
+            $table->bigInteger('id_pertanyaan')->unsigned();
+            $table->foreign('id_pertanyaan')->references('id')->on('pertanyaan');
+            $table->bigInteger('id_survei')->unsigned();
             $table->foreign('id_survei')->references('id')->on('survei');
+            $table->integer('id_kategori')->unsigned();
             $table->foreign('id_kategori')->references('id')->on('kategori');
-            $table->foreign('id_tipepertanyaan')->references('id')->on('tipe_pertanyaan');
+            $table->bigInteger('id_tipe_pertanyaan')->unsigned();
+            $table->foreign('id_tipe_pertanyaan')->references('id')->on('tipe_pertanyaan');
             $table->timestamps();
         });     
     }
