@@ -1,30 +1,27 @@
 @extends('Surevey.layoutfrontend.master')
-
+@section('logout')
+<li><a href="{{ route('user.logout') }}" data-toggle="modal">Logout</a></li>                      
+@endsection 
 @section('content')
-    
-@endsection
 <section id="featured" style="background-color: #F03C02; padding: 16px">
     <div class="container" style="background-color: #FFF">
         <div class="row">
             <div class="span12" style=" padding-top: 32px">
                 <h3>Kategori: Politik</h3>
-
                 @forelse ($data as $datas)
-                    
-               
-                <a href="fill_questionare.html" class="card">
+            <a href="" class="card">
                         <div class="card-body">
                             <h5 class="card-title">{{$datas->judul_survei}}</h5>
-                             <h6 class="card-subtitle mb-2 text-muted">{{--{{$datas->$kategori->nama_kategori}}--}}</h6> 
+                            <h6 class="card-subtitle mb-2 text-muted" value="{{$datas->id_kategori}}">{{$datas->nama_kategori}}</h6> 
                         <p class="card-text">{{$datas->deskripsi_survei}}</p>
-
-    
                         </div>
                     </a>
-                    @empty
+                    @empty    
+                 <a href="{{route('survey.create')}}" class="card">
                     <div class="card-body">
-                      <p class="card-text">Nothing to Show</p>
-                      <a href="survey/create">Create Survey</a>
+                        <h5 class="card-title">Nothing To Show</h5> 
+                        <h6 class="card-subtitle mb-2 text-muted" ></h6>
+                        <p class="card-text"> Start Create Survey </p>
                     </div>
                     @endforelse
                     <nav aria-label="..." style="float: right">

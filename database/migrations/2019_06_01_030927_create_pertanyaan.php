@@ -17,7 +17,7 @@ class CreatePertanyaan extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('id_survei')->unsigned();
             $table->foreign('id_survei')->references('id')->on('survei');
-            $table->bigInteger('id_user');
+            $table->bigInteger('id_user')->unsigned();
             $table->foreign('id_user')->references('id')->on('user');
             $table->bigInteger('id_tipe_pertanyaan')->unsigned();
             $table->foreign('id_tipe_pertanyaan')->references('id')->on('tipe_pertanyaan');

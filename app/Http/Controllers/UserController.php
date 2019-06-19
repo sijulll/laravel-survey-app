@@ -5,8 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\user;
 use App\ModelUser;
+use Validator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -35,15 +39,13 @@ class UserController extends Controller
         $password = $request->password;
 
         $data = user::where('email',$email)->first();
-        
-        if($data) //check email ada atau tidak
+        if($data)  //check email apakah ada atau tidak
         {
             if(Hash::check($password,$data->password))
             {
                 Session::put('full_name',$data->full_name);
                 Session::put('email',$data->email);
-                Session::put('Login',TRUE);
-                
+                Session::put('login',TRUE);
                 
                 return redirect('surveylist');
             }
@@ -58,9 +60,9 @@ class UserController extends Controller
     {   
         $this->validate($request, [
             'full_name' => 'required|min:4',
-            'email' => 'required|min:4|email|unique:users',
+            'email' => 'required|min:4|email|unique:user',
             'password'=>'required',
-            'repassword'=>'required|same:password'
+            'repassword'=>'required|same:password',
         ]);
 
         $data = new user();
@@ -105,9 +107,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        return view('surevey.index');
     }
 
     /**

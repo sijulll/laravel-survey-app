@@ -14,33 +14,21 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/index', function () {
-    return view('Survey.index');
-});
-Route::get('/Logout','UserController@Logout');
-
-Route::post('/RegisterPost','UserController@RegisterPost');
-Route::post('/LoginPost','UserController@LoginPost');
-
-
+Route::get('/index','UserController@show')->name('surevey.index');
+Route::get('/logout','UserController@Logout')->name('user.logout');
+Route::post('/registerpost','UserController@RegisterPost')->name('user.register');
+Route::post('/loginpost','UserController@LoginPost')->name('user.login');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 //reward routes
-Route::get('/reward','RewardController@index')->name('reward');
+Route::get('/reward','RewardController@index')->name('reward.list');
 
 //profile
-//Route::resource('user', 'UserController');
-Route::get('/editprofile/edit/{id}','UserController@edit')->name('editprofile');
-Route::post('/editprofile/update','UserController@update');
+Route::get('/editprofile/edit/{id}','UserController@edit')->name('profile.edit');
+Route::post('/editprofile/update','UserController@update')->name('profile.update');
 
-//Create Survei
-Route::get('/CreateSurvey',function() {
-    return view('Surevey.CreateSurvey');
-
-Route::get('/surveylist','SurveyController@index')->name('surveylist');
-});
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+//Survei
+Route::get('/createsurvey','SurveyController@show')->name('survey.create');
+Route::get('/surveylist','SurveyController@index')->name('survey.list');

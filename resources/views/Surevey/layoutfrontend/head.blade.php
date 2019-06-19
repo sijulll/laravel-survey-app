@@ -12,6 +12,7 @@
 <link href="{{asset('css/jcarousel.css')}}" rel="stylesheet" />
 <link href="{{asset('css/flexslider.css')}}" rel="stylesheet" />
 <link href="{{asset('css/style.css')}}" rel="stylesheet" />
+<link href="{{asset('css/component.css')}}" rel="stylesheet"
 <!-- Theme skin -->
 <link href="{{asset('skins/default.css')}}" rel="stylesheet" />
 <!-- Fav and touch icons -->

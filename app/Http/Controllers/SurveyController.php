@@ -17,10 +17,10 @@ class SurveyController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     public function __construct()
-     {
-         $this->middleware('auth');
-     }
+    //  public function __construct()
+    //  {
+    //      $this->middleware('auth');
+    //  }
 
      public function detail_survey(ModelSurvei $survey )
      {
@@ -30,7 +30,7 @@ class SurveyController extends Controller
     public function index()
     {
         $data = ModelSurvei::get();
-        return view('Survey.surveylist',compact('data'));
+        return view('Surevey.surveylist',compact('data'));
     }
 
     /**
@@ -44,7 +44,7 @@ class SurveyController extends Controller
         $arr = $request ->all();
         $arr['id_user'] = Auth::id();
         $surveyItem = $survey->create($arr);
-        return redirect::to("/survei/{$surveyItem->id}");
+        return redirect::to("{/createsurvey{$surveyItem->id}");
 
     }
 
@@ -88,10 +88,12 @@ class SurveyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request)
+    public function show()
     {
 
-        #Get Survey List 
+        #Get Survey Data
+        
+        return view('Surevey.createsurvey');
         
     }
 

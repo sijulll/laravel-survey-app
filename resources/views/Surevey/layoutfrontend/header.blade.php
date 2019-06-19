@@ -12,6 +12,7 @@
                     <ul>
                       <li><a href="#mySignup" data-toggle="modal"><i class="icon-user"></i> Sign up</a></li>
                       <li><a href="#mySignin" data-toggle="modal">Sign in</a></li>
+                      @yield('logout')
                     </ul>
                   </div>
                   <!-- Signup Modal -->
@@ -30,30 +31,30 @@
                             </ul>
                         </div>
                         @endif
-                      <form action="{{url('RegisterPost')}}" method="post"class="form-horizontal">
+                      <form action="{{url('registerpost')}}" method="post"class="form-horizontal">
                         {{ csrf_field() }}
                         <div class="control-group">
-                          <label class="control-label" for="email">Email</label>
+                          <label class="control-label" for="email" >Email</label>
                           <div class="controls">
-                            <input type="text" id="email" name="email"placeholder="Email">
+                            <input type="text" id="email" name="email"placeholder="Email" required>
                           </div>
                         </div>
                         <div class="control-group">
                           <label class="control-label" for="full_name">Full Name</label>
                           <div class="controls">
-                            <input type="text" id="full_name" name="full_name"placeholder="Full Name">
+                            <input type="text" id="full_name" name="full_name"placeholder="Full Name" required>
                           </div>
                         </div>
                         <div class="control-group">
                           <label class="control-label" for="password">Password</label>
                           <div class="controls">
-                            <input type="password" id="password" name="password" placeholder="Password">
+                            <input type="password" id="password" name="password" placeholder="Password" required>
                           </div>
                         </div>
                         <div class="control-group">
                           <label class="control-label" for="repassword">Confirm Password</label>
                           <div class="controls">
-                            <input type="password" id="repassword" name="repassword" placeholder="Password">
+                            <input type="password" id="repassword" name="repassword" placeholder="Password" required>
                           </div>
                         </div>
                         <div class="control-group">
@@ -89,7 +90,7 @@
                       </div>
                       @endif
 
-                    <form action="{{ url('/LoginPost') }}" method="post" class="form-horizontal">
+                    <form action="{{ url('/loginpost') }}" method="post" class="form-horizontal">
                       {{ csrf_field() }}
                         <div class="control-group">
                           <label class="control-label" for="email">Email</label>

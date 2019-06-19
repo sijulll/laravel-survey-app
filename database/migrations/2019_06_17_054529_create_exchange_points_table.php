@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateControllerExchangePointsTable extends Migration
+class CreateExchangePointsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,15 @@ class CreateControllerExchangePointsTable extends Migration
      */
     public function up()
     {
-        Schema::create('controller_exchange_points', function (Blueprint $table) {
+        Schema::create('exchange_points', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->$table->bigInteger('id_user')->unsigned();
-            $table->foreign('id_user')->references('id_user')->on('user_detail');
-            $table->$table->Integer('id_reward')->unsigned();
-            $table->foreign('id_reward')->references('id')->on('reward');
+            $table->bigInteger('id_user')->unsigned();
+            $table->integer('id_reward')->unsigned();
             $table->timestamps();
+
+            
+            $table->foreign('id_user')->references('id_user')->on('user_detail');
+            $table->foreign('id_reward')->references('id')->on('reward');
         });
     }
 
@@ -30,6 +32,6 @@ class CreateControllerExchangePointsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('controller_exchange_points');
+        Schema::dropIfExists('exchange_points');
     }
 }
