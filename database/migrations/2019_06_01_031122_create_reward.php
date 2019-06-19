@@ -15,8 +15,9 @@ class CreateReward extends Migration
     {
         Schema::create('reward', function (Blueprint $table) {
             $table->Increments('id');
-            $table->string('reward');
+            $table->string('reward_name');
             $table->string('description');
+            $table->integer('reward_point');
             $table->integer('id_admin')->unsigned();
             $table->foreign('id_admin')->references('id')->on('admin');
             $table->timestamps();

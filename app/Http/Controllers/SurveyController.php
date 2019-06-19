@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use Illuminate\Http\Request;
 use illuminate\Support\Facades\DB;
 use App\ModelSurvei;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Redirect;
 
 class SurveyController extends Controller
 {
@@ -13,10 +16,21 @@ class SurveyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     public function __construct()
+     {
+         $this->middleware('auth');
+     }
+
+     public function detail_survey(ModelSurvei $survey )
+     {
+         $data->load('pertanyaan.user');
+         return view('',compact('data'));
+     }
     public function index()
     {
-        $data = ModelSurvei::all();
-        return view('',compact('data'));
+        $data = ModelSurvei::get();
+        return view('Survey.surveylist',compact('data'));
     }
 
     /**
@@ -24,12 +38,28 @@ class SurveyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request, ModelSurvei $survey)
     {
         //return to view front end;
-        return view('');
+        $arr = $request ->all();
+        $arr['id_user'] = Auth::id();
+        $surveyItem = $survey->create($arr);
+        return redirect::to("/survei/{$surveyItem->id}");
 
     }
+
+    public function surveyView(ModelSurvei $survey)
+    {
+        $survey->opsi_pertanyaan = unserialize($survey->opsi_pertanyaan);
+        return view('',compact('survey'));
+    }
+
+    public function SurveyViewAnswer(ModelSurvei $survey)
+    {
+        $survey->load('user.pertanyaan.response');
+        return view('',compact('survey'));
+    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -43,10 +73,12 @@ class SurveyController extends Controller
         $data->id_kategori = $request->id_kategori;
         $data->judul_survei = $reqiest->judul_survei;
         $data->deskripsi_survei = $request->deskripsi_survei;
-        // $data->pict_survei = $request->pict_survei;
-        // $data->id_user = $request->id_user;
-        // $data->id_point = $request->id_point;
-         $data->save();
+        $data->pict_survei = $request->pict_survei;
+        $data->id_user = $request->id_user;
+        $data->id_point = $request->id_point;
+        $data->save();
+
+        
         return redirect()->route('index')->with('alert-succes','Berhasil menambahkan Data');
     }
 
@@ -56,9 +88,11 @@ class SurveyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+
+        #Get Survey List 
+        
     }
 
     /**

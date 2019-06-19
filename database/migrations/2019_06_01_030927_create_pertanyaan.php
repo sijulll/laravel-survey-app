@@ -17,11 +17,12 @@ class CreatePertanyaan extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('id_survei')->unsigned();
             $table->foreign('id_survei')->references('id')->on('survei');
-            $table->integer('id_kategori')->unsigned();
-            $table->foreign('id_kategori')->references('id')->on('kategori');
+            $table->bigInteger('id_user');
+            $table->foreign('id_user')->references('id')->on('user');
             $table->bigInteger('id_tipe_pertanyaan')->unsigned();
             $table->foreign('id_tipe_pertanyaan')->references('id')->on('tipe_pertanyaan');
-            $table->text('pertanyaan');
+            $table->string('pertanyaan');
+            $table->string('opsi_pertanyaan')->nullable();
             $table->timestamps();
         });
     }

@@ -4,6 +4,7 @@
 <head>
    {{-- Bagian Head dari frontend  --}}
 @include('Surevey.layoutfrontend.head')
+@yield('exthead')
 </head>
   <body>
     

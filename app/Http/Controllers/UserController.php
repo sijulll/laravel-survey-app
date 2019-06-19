@@ -23,7 +23,7 @@ class UserController extends Controller
         }
         else
         {
-            return view('SureveyList');
+            return view('surveylist');
         }
         return view('index');
     }
@@ -45,7 +45,7 @@ class UserController extends Controller
                 Session::put('Login',TRUE);
                 
                 
-                return redirect('SureveyList');
+                return redirect('surveylist');
             }
             else
             {
@@ -118,7 +118,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = ModelUser::where('id_user',$id)-> get();
+        return view('Survey.editprofile',compact('data'));//
     }
 
     /**
@@ -128,9 +129,16 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request) //$id_user)
     {
-        //
+        $data = ModelUser::where('id_user',$request->id)->first();
+        $data->nama_user = $request->nama_user;
+        $data->jenis_kelamin = $request->jenis_kelamin;
+        $data->pekerjaan = $request->pekerjaan;
+        $data->wilayah = $request->wilayah;
+        $data->user_point = $request->user_point;
+        $data->save();
+        return redirect()->route('index')->with('alert-succes','Data Berhasil di Ubah');
     }
 
     /**

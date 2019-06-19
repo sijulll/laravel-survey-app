@@ -19,12 +19,15 @@ class CreateSurvei extends Migration
             $table->foreign('id_kategori')->references('id')->on('kategori');
             $table->string('judul_survei');
             $table->string('deskripsi_survei');
-            $table->string('pict_survei');
+            #$table->string('pict_survei');
             $table->bigInteger('id_user')->unsigned();
-            $table->foreign('id_user')->references('id_user')->on('user_detail');
-            $table->bigInteger('id_point')->unsigned();
-            $table->foreign('id_point')->references('id')->on('point');     
+            $table->bigInteger('id_point')->unsigned();   
+            $table->softDeletes();
             $table->timestamps();
+
+
+            $table->foreign('id_user')->references('id')->on('user');
+            $table->foreign('id_point')->references('id')->on('point');  
         });
     }
 

@@ -1,9 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Auth;
 use Illuminate\Http\Request;
-
+use illuminate\Support\Facades\DB;
+use App\ModelSurvei;
+use App\ModelResponse;
+use App\ModelPertanyaan;
+use Illuminate\Support\Facades\Redirect;
 class ResponseController extends Controller
 {
     /**
@@ -32,9 +36,29 @@ class ResponseController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, ModelSurvei $survey) //ModelPertanyaan $pertanyaan )
     {
         //
+        $arr = $request->except('_token');
+        foreach ($arr as $key => $value)
+        {
+            $newResponse = new ModelResponse();
+            if (! is_array($value))
+            {
+                $newValue = $value['response'];    
+            } else 
+            {
+                $newValue =json_encode($value['response']);       
+            }
+            $newResponse->id_user = Auth::id();
+            $newResponse->id_pertanyaan = $key;
+            $newResponse->id_survei = $survey->id;
+            $newResponse->response->$newValue;
+
+            $newAnswer->save();
+            
+        };
+        return redirect()->action('SurveyController@SurveyViewAnswer',[$survey->id]);
     }
 
     /**
