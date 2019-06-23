@@ -2,21 +2,41 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use App\ModelReward;
-
+use App\ModelUser;
 class RewardController extends Controller
 {
+
+
+
+    public function tukarpoint()
+    {
+        $user = ModelUser::all();
+        $reward = ModelReward::all();
+
+        
+
+        
+
+
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    
+    public function index($id)
     {
-        //view All data Survei
+        //view All data 
+        $user = Session::get('id');
+        $userdetail = DB::table('user_detail')
+        ->where('id_user','=', $id);
         $data = ModelReward::all();
-        return view('Surevey.reward', compact('data'));
+        return view('Surevey.reward', compact('data','userdetail'));
     }
 
     /**

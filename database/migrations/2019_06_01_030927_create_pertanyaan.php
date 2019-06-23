@@ -21,8 +21,7 @@ class CreatePertanyaan extends Migration
             $table->foreign('id_user')->references('id')->on('user');
             $table->bigInteger('id_tipe_pertanyaan')->unsigned();
             $table->foreign('id_tipe_pertanyaan')->references('id')->on('tipe_pertanyaan');
-            $table->string('pertanyaan');
-            $table->string('opsi_pertanyaan')->nullable();
+            $table->string('pertanyaan')->nullable();
             $table->timestamps();
         });
     }

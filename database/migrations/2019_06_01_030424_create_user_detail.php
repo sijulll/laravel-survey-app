@@ -15,12 +15,11 @@ class CreateUserDetail extends Migration
     {
         Schema::create('user_detail', function (Blueprint $table) {
             $table->bigInteger('id_user')->unsigned();
-            $table->string('nama_user');
             $table->string('jenis_kelamin');
             $table->integer('no_tlp');
-            $table->string('pekerjaan');
+            $table->string('jurusan');
             $table->string('wilayah');
-            $table->integer('user_point');
+            $table->integer('user_point')->nullable();
             $table->timestamps();
 
             $table->primary('id_user')->references('id')->on('user');

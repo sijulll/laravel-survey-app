@@ -160,6 +160,10 @@
                             <a href="index.html">Home </a>
                            
                           </li>
+                          <li class="dropdown ">
+                          <a href="{{route('reward.list','Session::get('id')')}}">Reward </a>
+                           
+                          </li>
                           
                           <li class="dropdown">
                             <a href="about.html">About </i></a>

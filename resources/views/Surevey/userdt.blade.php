@@ -9,43 +9,41 @@
                 </div>
                 <div class="span12" style=" padding: 8px">
                   
-                  <form method="POST">
-                    
-                    @foreach ($data as $datas)
+                <form method="POST" action="{{route('userdt.store')}}">
+
                     {{csrf_field()}}
-                    {{ method_field('PUT') }}
                     <table align="center" style="border-collapse:separate;border-spacing:36px 8px;">
+                    <h3 align="center">{{Session::get('full_name')}}</h3>
                       <tr>
-                        <td>Nama Lengkap</td>
-                        <td><input id="nama_user" name="nama_user" type="text" value="{{$datas->nama_user}}"/></td>
+                        <td>Email</td>
+                        <td><input id="nama_user" name="nama_user" type="text" value="{{Session::get('email')}}" disabled/></td>
                       </tr>
                       <tr>
                         <td>Jenis Kelamin</td>
                         <td>
-                          <input id="jenis_kelamin" type="radio" name="jenis_kelamin" value="Laki-Laki" {{($datas->jenis_kelamin=="Laki-Laki")? "checked":"" }}>Laki-Laki</input>
-                          <input id="jenis_kelamin" type="radio" name="jenis_kelamin" value="Perempuan" {{($datas->jenis_kelamin=="Perempuan")? "checked":"" }}>Perempuan</input>
+                          <input id="jenis_kelamin" type="radio" name="jenis_kelamin" value="Laki-Laki" >Laki-Laki</input>
+                          <input id="jenis_kelamin" type="radio" name="jenis_kelamin" value="Perempuan" >Perempuan</input>
                         </td>
                       </tr>
                       <tr>
                         <td>Nomor Telpon</td>
-                        <td><input id="no_tlp" name="no_tlp" type="tel" value="{{$datas->no_tlp}}"/></td>
+                        <td><input id="no_tlp" name="no_tlp" type="tel" /></td>
                       </tr>
                       <tr>
                         <td>Jurusan</td>
-                        <td><input  id="pekerjaan" name="pekerjaan" type="text" value="{{$datas->pekerjaan}}"/></td>
+                        <td><input  id="jurusan" name="jurusan" type="text" /></td>
                       </tr>
                       <tr>
                         <td>Wilayah</td>
-                        <td><input id="wilayah" name="wilayah" type="text" value="{{$datas->wilayah}}"/> </td>
-                      </tr> 
+                        <td><input id="wilayah" name="wilayah" type="text" /> </td>
+                      </tr>
                       <tr>
                         <td></td>
                         <td><div class="span2" style="margin-left:0; float: none">
-                            <input class="btn btn-theme btn-block" type="submit" formaction="/editprofile/update" value="Ubah">
+                            <input class="btn btn-theme btn-block" type="submit" value="Submit">
                         </div></td>
                       </tr>
                     </table>
-                    @endforeach
                   </form>
               </div>
             </div>

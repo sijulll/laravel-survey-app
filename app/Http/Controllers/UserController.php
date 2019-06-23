@@ -7,6 +7,7 @@ use App\user;
 use App\ModelUser;
 use Validator;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Mail;
@@ -19,6 +20,11 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function userdetail()
+    {
+        return view('Surevey.userdt');
+    }
     public function LoginSes()
     {
         if(!Session::get('Login'))
@@ -27,7 +33,7 @@ class UserController extends Controller
         }
         else
         {
-            return view('surveylist');
+            return view('userdt');
         }
         return view('index');
     }
@@ -35,26 +41,36 @@ class UserController extends Controller
     
     public function LoginPost(Request $request)
     {
+        
         $email = $request->email;
         $password = $request->password;
 
-        $data = user::where('email',$email)->first();
+
+            
+            $data = user::where('email',$email)->first();
         if($data)  //check email apakah ada atau tidak
         {
             if(Hash::check($password,$data->password))
-            {
+            {   Session::put('id',$data->id);
                 Session::put('full_name',$data->full_name);
                 Session::put('email',$data->email);
                 Session::put('login',TRUE);
-                
+             if(ModelUser::where('id_user','=',Session::get('id'))->exists() )
+             {
                 return redirect('surveylist');
-            }
+              } else
+                {
+                   return redirect('userdt');
+                }
+             }   
+            
+        }
             else
             {
                 return redirect('index')->with('alert','Password atau Email yang anda masukan salah !!! ' );
             }
         }
-    }
+    
 
     public function RegisterPost(Request $request)
     {   
@@ -98,8 +114,21 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $data = new ModelUser();
+        // $user= new user();
+        // $data->fill(Auth::user());
+        $data->id_user = Session::get('id');     
+        $data->jenis_kelamin = $request->jenis_kelamin;
+        $data->no_tlp = $request->no_tlp;   
+        $data->jurusan = $request->jurusan;
+        $data->wilayah = $request->wilayah;
+       // dd($data);
+        $data->save();
+
+         return redirect()->route('survey.list');
     }
+   
 
     /**
      * Display the specified resource.
@@ -111,6 +140,7 @@ class UserController extends Controller
     {
         return view('surevey.index');
     }
+   
 
     /**
      * Show the form for editing the specified resource.

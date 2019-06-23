@@ -6,8 +6,10 @@ use Auth;
 use Illuminate\Http\Request;
 use illuminate\Support\Facades\DB;
 use App\ModelSurvei;
+use App\ModelPertanyaan;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
+
 
 class SurveyController extends Controller
 {

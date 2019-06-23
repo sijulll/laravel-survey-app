@@ -6,7 +6,12 @@
         
       <div class="row">
         <div class="span12">
-          <h4>you have <strong>1000</strong> points</h4>
+          @foreach ($userdetail as $userdetails)
+              
+          
+          <h4>Hai {{Session::get('full_name')}}</h4>  
+        <h4>you have <strong>{{$userdetails->user_point}}</strong> points</h4>
+        @endforeach
         </div>
         {{-- //@php $no = 1; @endphp --}}
         @forelse($data as $datas) 
